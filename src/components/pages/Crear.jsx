@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Button } from 'antd'
+import DataContext from "../../context/DataContext";
 
 const Crear = () => {
     const [courses, setCourses] = useState()
@@ -9,9 +10,11 @@ const Crear = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const effectRan = useRef(false)
+    const { setSelectedCursoId } = useContext(DataContext)
 
-    const createNewSyllabus = async () => {
-        navigate('/')
+    const createNewSyllabus = (idCourse) => {
+        setSelectedCursoId(idCourse)
+        navigate('/newsyllabus')
     }
 
     useEffect(() => {
@@ -64,7 +67,7 @@ const Crear = () => {
                             <td>{course.requirement}</td>
                             <td>
                                 <div className="flexGrow">
-                                    <button onClick={createNewSyllabus}>Crear Syllabus</button>
+                                    <button type='button' onClick={() => createNewSyllabus(course._id)}>Crear Syllabus</button>
                                 </div>
                             </td>
                         </tr>

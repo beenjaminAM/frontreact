@@ -117,7 +117,7 @@ body {
     background-color: rgba(0, 0, 0, 0.802);
 }
 
-.App form {
+form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -129,7 +129,7 @@ body {
     color: #fff;
 }
 
-.App input[type="text"],
+[type="text"],
 .App input[type="password"],
 button,
 .App textarea {
@@ -137,11 +137,16 @@ button,
   font-size: 22px;
   padding: 0.25rem;
   border-radius: 0.5rem;
+  border: 1px solid #333;
 }
 
-.App label,
-.App button {
+form button {
   margin-top: 1rem;
+}
+
+label {
+  margin-top: 1rem;
+  font-weight: 700;
 }
 
 button {

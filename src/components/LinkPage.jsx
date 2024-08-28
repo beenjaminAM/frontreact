@@ -1,13 +1,14 @@
 import { Link, useLocation } from "react-router-dom"
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const LinkPage = () => {
+    const [first, setfirst] = useState(1)
+    const test = useRef(1)
+
     const location = useLocation();
-        const from = location.state?.from?.pathname || "/";
-    useEffect(()=> {
-        
-        console.log(`Link Page ${from}`);
-        
+    const from = location.state?.from?.pathname || "/";
+
+    useEffect(() => {
     }, [])
 
     return (

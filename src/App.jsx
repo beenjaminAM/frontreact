@@ -12,6 +12,8 @@ import RequireAuth from './components/RequireAuth';
 import PersistLogin from './components/PersistLogin';
 
 import Crear from './components/pages/Crear';
+import NewSyllabus from './components/pages/NewSyllabus';
+import { DataProvider } from './context/DataContext';
 import { Routes, Route } from 'react-router-dom';
 
 const ROLES = {
@@ -50,9 +52,14 @@ function App() {
             <Route path="lounge" element={<Lounge />} />
           </Route>
 
+          
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-            <Route path="crear" element={<Crear />} />
+            <Route element={<DataProvider />}>
+              <Route path="crear" element={<Crear />} />
+              <Route path="newsyllabus" element={<NewSyllabus />} />
+            </Route>
           </Route>
+          
         </Route>
         {/* catch all */}
         <Route path="*" element={<Missing />} />
