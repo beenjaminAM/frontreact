@@ -1,27 +1,23 @@
 import { createContext, useState, useEffect } from 'react';
 import useAxiosFetch from '../hooks/useAxiosFetch';
+import { Outlet } from 'react-router-dom';
 
 
-const SyllabuContext = createContext({});
+const SyllabuContext = createContext();
 
-export const SyllabusProvider = ({ children, id }) => {
+export const SyllabusProvider = () => {
+    const [courseIdSelected, setCourseIdSelected] = useState('404');
+    const [syllabu, setSyllabu] = useState()
+    const [syllabusId, setSyllabusId] = useState()
     
-    const [syllabu, setSyllabu] = useState(null)
-    const [syllabusList, setSyllabusList] = useState([])
-
-    const { data, fetchError, isLoading } = useAxiosFetch(`http://localhost:3500/syllabus/${id}`);
-
-    useEffect(() => {
-        setSyllabu(data);
-    }, [data])
-
+    
     return (
         <SyllabuContext.Provider value={{
             /* search, setSearch, */
-            /* searchResults,  */fetchError, isLoading,
-            syllabu, setSyllabu
+            /* searchResults,  */syllabusId, setSyllabusId,
+            syllabu, setSyllabu, courseIdSelected, setCourseIdSelected
         }}>
-            { children }
+            <Outlet />
         </SyllabuContext.Provider>
     )
 }

@@ -1,26 +1,26 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useReducer } from 'react'
 import Tab from '../../components/ui/Tab'
 import General from './contents/General';
 import Materiales from './contents/Materiales';
 import Programacion from './contents/Programacion';
 import Evaluacion from './contents/Evaluacion';
 import Bibliografia from './contents/Bibliografia';
-import { useParams } from 'react-router-dom';
 import useAxiosFetch from '../../hooks/useAxiosFetch';
-import DataContext from '../../context/DataContext';
-import { syllabuReducer, initialState, fetchSyllabu, updateSyllabu } from '../../services/syllabuReducer';
+import SyllabuContext from '../../context/SyllabuContext';
 
 const NewSyllabus = () => {
   const [courseName, setCourseName] = useState()
   const [sumilla, setSumilla] = useState()
-  const { selectedCursoId } = useContext(DataContext)
-  const { data, fetchError, isLoading } = useAxiosFetch(`http://localhost:3500/courses/${selectedCursoId}`)
+  const { courseIdSelected } = useContext(SyllabuContext)
+  const { data, fetchError, isLoading } = useAxiosFetch(`http://localhost:3500/courses/${courseIdSelected}`)
   const [activeKey, setActiveKey] = useState('1')
   const onKeyChange = (key) => setActiveKey(key)
+
 
   useEffect(() => {
     if (!fetchError && !isLoading) {
       console.log(data.name)
+      console.log(`Course Selected ID ${courseIdSelected}`)
       setCourseName(data.name)
       setSumilla(data.sumilla)
     }
@@ -43,7 +43,8 @@ const NewSyllabus = () => {
           key: '2',
           label: 'Materiales',
           children: (
-            <Materiales />
+            <Materiales
+            />
           ),
         },
         {

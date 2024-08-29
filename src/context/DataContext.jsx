@@ -6,7 +6,7 @@ import useAxiosPrivate from '../hooks/useAxiosPrivate';
 
 const DataContext = createContext({});
 
-export const DataProvider = ({ children }) => {
+export const DataProvider = () => {
     
     const [syllabusList, setSyllabusList] = useState([])
     /* const [posts, setPosts] = useState([])

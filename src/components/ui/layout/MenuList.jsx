@@ -37,6 +37,7 @@ const MenuList = ({ darkTheme }) => {
     }] : []), // Si la condición es falsa, se añade un arreglo vacío
     {
       key: 'progress',
+      path: '/syllabus',
       icon: <AreaChartOutlined />,
       label: 'Syllabus'
     },

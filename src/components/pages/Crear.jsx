@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useContext } from "react";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Button } from 'antd'
-import DataContext from "../../context/DataContext";
+import SyllabuContext from '../../context/SyllabuContext';
 
 const Crear = () => {
     const [courses, setCourses] = useState()
@@ -10,14 +10,19 @@ const Crear = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const effectRan = useRef(false)
-    const { setSelectedCursoId } = useContext(DataContext)
+    const { setCourseIdSelected, setSyllabu, setSyllabusId } = useContext(SyllabuContext)
+
 
     const createNewSyllabus = (idCourse) => {
-        setSelectedCursoId(idCourse)
+        setCourseIdSelected(idCourse)
         navigate('/newsyllabus')
     }
 
     useEffect(() => {
+
+        setCourseIdSelected(null)
+        setSyllabu(null)
+        setSyllabusId(null)
         console.log('effect ran');
         let isMounted = true;
         const controller = new AbortController();
@@ -33,7 +38,7 @@ const Crear = () => {
                     isMounted && setCourses(response.data);
                 } catch (err) {
                     console.error(err);
-                    navigate('/login', { state: { from: location }, replace: true });
+                    /* navigate('/login', { state: { from: location }, replace: true }); */
                 }
             }
 

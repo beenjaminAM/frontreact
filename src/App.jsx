@@ -13,7 +13,8 @@ import PersistLogin from './components/PersistLogin';
 
 import Crear from './components/pages/Crear';
 import NewSyllabus from './components/pages/NewSyllabus';
-import { DataProvider } from './context/DataContext';
+import SyllabusList from './components/pages/SyllabusList';
+import { SyllabusProvider } from './context/SyllabuContext';
 import { Routes, Route } from 'react-router-dom';
 
 const ROLES = {
@@ -54,10 +55,11 @@ function App() {
 
           
           <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-            <Route element={<DataProvider />}>
+            <Route element={<SyllabusProvider />}>
               <Route path="crear" element={<Crear />} />
               <Route path="newsyllabus" element={<NewSyllabus />} />
             </Route>
+            <Route path='syllabus' element={<SyllabusList />} />
           </Route>
           
         </Route>

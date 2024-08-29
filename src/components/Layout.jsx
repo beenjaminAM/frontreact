@@ -7,12 +7,12 @@ const Layout = () => {
 
     return (
         auth?.roles
-                ?   <>
-                        <LayoutAuth />
-                    </>
-                :   <main className="App auth">
-                        <Outlet />
-                    </main>
+            ?   <>  
+                    <LayoutAuth />
+                </>
+            :   <main className="App auth">
+                    <Outlet />
+                </main>
        
     )
 }
