@@ -6,10 +6,20 @@ import { Button } from 'antd'
 import SyllabuContext from '../../context/SyllabuContext';
 
 const SyllabusList = () => {
-
+    const { syllabu, setSyllabu, syllabusId, setSyllabusId } = useContext(SyllabuContext)
+    const navigate = useNavigate();
     const [syllabus, setSyllabus] = useState([])
 
     const { data, fetchError, isLoading } = useAxiosFetch('http://localhost:3500/syllabus');
+
+    const showSyllabus = (syllabu) => {
+        setSyllabu(syllabu)
+        navigate('/syllabuspage')
+    }
+
+    useEffect(() => {
+        
+    }, [])
 
     useEffect(() => {
         setSyllabus(data);
@@ -35,7 +45,7 @@ const SyllabusList = () => {
                             <td>{syllabu.profesor}</td>
                             <td>
                                 <div className="flexGrow">
-                                    <button type='button' >Update Syllabus</button>
+                                    <button type='button' onClick={() => showSyllabus(syllabu)}>Show Syllabus</button>
                                 </div>
                             </td>
                         </tr>

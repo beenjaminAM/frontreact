@@ -15,6 +15,7 @@ import Crear from './components/pages/Crear';
 import NewSyllabus from './components/pages/NewSyllabus';
 import SyllabusList from './components/pages/SyllabusList';
 import { SyllabusProvider } from './context/SyllabuContext';
+import SyllabusPage from './components/pages/SyllabusPage';
 import { Routes, Route } from 'react-router-dom';
 
 const ROLES = {
@@ -58,8 +59,9 @@ function App() {
             <Route element={<SyllabusProvider />}>
               <Route path="crear" element={<Crear />} />
               <Route path="newsyllabus" element={<NewSyllabus />} />
+              <Route path='syllabus' element={<SyllabusList />} />
+              <Route path='syllabuspage' element={<SyllabusPage />} />
             </Route>
-            <Route path='syllabus' element={<SyllabusList />} />
           </Route>
           
         </Route>
