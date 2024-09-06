@@ -36,12 +36,44 @@ const SyllabusPage = () => {
                         data={syllabu.periodo}
                     />
                     <LabelData 
+                        label={"Competencias generales"}
+                        data={syllabu.competencias?syllabu.competencias.competenciaGeneral:''}
+                    />
+                    <LabelData 
+                        label={"Competencias especificas"}
+                        data={syllabu.competencias?syllabu.competencias.competenciaEspecifica:''}
+                    />
+                    <LabelData 
                         label={"Logros De Aprendizaje"}
                         data={syllabu.logrosDeAprendizaje?syllabu.logrosDeAprendizaje.logro:''}
                     />
                     <LabelData 
-                        label={"Estrategias"}
-                        data={syllabu.estrategias?syllabu.estrategias.estrategia: ''}
+                        label={"Material"}
+                        data={syllabu.materiales?syllabu.materiales.material: ''}
+                    />
+                    <LabelData 
+                        label={"Programacion teorica"}
+                        data={syllabu.programacion?syllabu.programacion.teorico: ''}
+                    />
+                    <LabelData 
+                        label={"Programacion practica"}
+                        data={syllabu.programacion?syllabu.programacion.practico: ''}
+                    />
+                    <LabelData 
+                        label={"Evaluacion Final"}
+                        data={syllabu.evaluacion?syllabu.evaluacion.parcial: ''}
+                    />
+                    <LabelData 
+                        label={"Evaluacion Parcial"}
+                        data={syllabu.evaluacion?syllabu.evaluacion.final: ''}
+                    />
+                    <LabelData 
+                        label={"Evaluacion Continua"}
+                        data={syllabu.evaluacion?syllabu.evaluacion.evaluacionContinua: ''}
+                    />
+                    <LabelData 
+                        label={"Bibliografia"}
+                        data={syllabu.bibliografia?syllabu.bibliografia.bibliografia: ''}
                     />
                 </>
             ):(
