@@ -68,12 +68,14 @@ const Evaluacion = () => {
             htmlFor={"final"}
             state={final}
             setState={setFinal}
+            type="number"
         />
         <LabelInput 
             label={"Nota de Evaluacion Continuas"}
             htmlFor={"evaluacionContinua"}
             state={evaluacionContinua}
             setState={setEvaluacionContinua}
+            type="number"
         />
         <button type="submit">Submit</button>
     </form>

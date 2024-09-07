@@ -1,27 +1,27 @@
 import { useState } from 'react'
 
 
-const LabelInput = ({ label, htmlFor, placeholder, state,  setState, required}) => {
+const LabelInput = ({ label, htmlFor, placeholder, state,  setState, required, type = 'text' }) => {
     const [test, setTest] = useState()
+    const handleChange = (e) => {
+        const value = type === 'number' ? Number(e.target.value) : e.target.value;
+        if (setState) {
+            setState(value);
+        } else {
+            setTest(value);
+        }
+    };
     return (
         <>
-            <label htmlFor={htmlFor? htmlFor: ""}>{label}:</label>
-            {required? 
-            (<input
-                type="text"
-                id={htmlFor? htmlFor: ""}
-                placeholder={placeholder? placeholder: ""}
-                required
-                value={state? state: test? test: ""}
-                onChange={setState? (e) => setState(e.target.value): (e) => setTest(e.target.value)}
-            />): (<input
-                type="text"
-                id={htmlFor? htmlFor: ""}
-                placeholder={placeholder? placeholder: ""}
-                value={state? state: test? test: ""}
-                onChange={setState? (e) => setState(e.target.value): (e) => setTest(e.target.value)}
-            />)
-            }
+            <label htmlFor={htmlFor || ''}>{label}:</label>
+            <input
+                type={type}
+                id={htmlFor || ''}
+                placeholder={placeholder || ''}
+                required={required}
+                value={state !== undefined ? state : test}
+                onChange={handleChange}
+            />
         </>
     );
 }
