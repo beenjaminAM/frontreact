@@ -17,6 +17,11 @@ const SyllabusList = () => {
         navigate('/syllabuspage')
     }
 
+    const editSyllabus = (syllabu) => {
+        setSyllabu(syllabu)
+        navigate('/editsyllabus')
+    }
+
     useEffect(() => {
         
     }, [])
@@ -46,6 +51,9 @@ const SyllabusList = () => {
                             <td>
                                 <div className="flexGrow">
                                     <button type='button' onClick={() => showSyllabus(syllabu)}>Show Syllabus</button>
+                                </div>
+                                <div className="flexGrow">
+                                    <button type='button' onClick={() => editSyllabus(syllabu)}>Edit Syllabus</button>
                                 </div>
                             </td>
                         </tr>

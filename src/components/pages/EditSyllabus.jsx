@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState, useReducer } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Tab from '../../components/ui/Tab'
-import General from './contents/General';
+import EditGeneral from './contents/EditGeneral';
 import Materiales from './contents/Materiales';
 import Programacion from './contents/Programacion';
 import Evaluacion from './contents/Evaluacion';
@@ -8,23 +8,13 @@ import Bibliografia from './contents/Bibliografia';
 import useAxiosFetch from '../../hooks/useAxiosFetch';
 import SyllabuContext from '../../context/SyllabuContext';
 
-const NewSyllabus = () => {
+const EditSyllabus = () => {
   const [courseName, setCourseName] = useState()
   const [sumilla, setSumilla] = useState()
-  const { courseIdSelected } = useContext(SyllabuContext)
-  const { data, fetchError, isLoading } = useAxiosFetch(`http://localhost:3500/courses/${courseIdSelected}`)
+  
+  const { syllabu} = useContext(SyllabuContext)
   const [activeKey, setActiveKey] = useState('1')
   const onKeyChange = (key) => setActiveKey(key)
-
-
-  useEffect(() => {
-    if (!fetchError && !isLoading) {
-      console.log(data.name)
-      console.log(`Course Selected ID ${courseIdSelected}`)
-      setCourseName(data.name)
-      setSumilla(data.sumilla)
-    }
-  }, [data])
   
 
     const items = [
@@ -32,18 +22,22 @@ const NewSyllabus = () => {
           key: '1',
           label: 'Informacion General',
           children: (
-            <General
+            <EditGeneral
               onKeyChange={onKeyChange}
               courseName={courseName}
               sumilla={sumilla}
+            
+              objSyllabus={syllabu}
             />
           ),
-        },
+        },/*
         {
           key: '2',
           label: 'Materiales',
           children: (
             <Materiales
+            
+              objSyllabus={syllabu}
             />
           ),
         },
@@ -51,14 +45,18 @@ const NewSyllabus = () => {
           key: '3',
           label: 'Programacion',
           children: (
-            <Programacion />
+            <Programacion 
+              objSyllabus={syllabu}
+            />
           ),
         },
         {
           key: '4',
           label: 'Evaluacion',
           children: (
-            <Evaluacion />
+            <Evaluacion 
+              objSyllabus={syllabu}
+            />
           ),
         },
         {
@@ -66,7 +64,9 @@ const NewSyllabus = () => {
           label: 'Bibliografia',
           children: (
             <>
-              <Bibliografia />
+              <Bibliografia 
+              objSyllabus={syllabu}
+              />
                 {/* <p>long content</p>
                 {
                     // indicates very long content
@@ -76,16 +76,14 @@ const NewSyllabus = () => {
                     <br />
                     </React.Fragment>
                 ))
-                } */}
+                } 
             </>
           ),
-        },
+        },*/
       ];
   return (
-    <>
-            {isLoading && <p>Loading...</p>}
-            {!isLoading && !fetchError && 
-              <>
+    <><>
+
                 <h1>Crear Syllabus</h1>
                 <Tab
                   items={items} 
@@ -93,10 +91,8 @@ const NewSyllabus = () => {
                   activeKey={activeKey}
                 />
               </>
-            }
-            {!isLoading && fetchError && <p>{fetchError}</p>}
     </>
   )
 }
 
-export default NewSyllabus
+export default EditSyllabus
